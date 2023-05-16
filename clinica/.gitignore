@@ -1,3 +1,5 @@
+ npm install express mysql body-parser cors
+npm i react-router-dom
 # Logs
 logs
 *.log
@@ -11,6 +13,13 @@ node_modules
 dist
 dist-ssr
 *.local
+package.json
+package-lock.json
+.eslintrc.cjs
+vite.config.js
+history.ts
+index.ts
+loose-envify.cmd
 
 # Editor directories and files
 .vscode/*
