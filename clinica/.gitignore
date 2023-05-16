@@ -1,4 +1,4 @@
- npm install express mysql body-parser cors
+npm install express mysql body-parser cors
 npm i react-router-dom
 # Logs
 logs
@@ -20,7 +20,10 @@ vite.config.js
 history.ts
 index.ts
 loose-envify.cmd
-
+loose-envify
+router.ts
+README.node_modulesutils.ts
+index.d.ts
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
