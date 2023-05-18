@@ -44,28 +44,123 @@ app.listen(port, () => {
 
 //////////////
 
+// app.post('/api/login', (req, res) => {
+//   const { email, password } = req.body;
+//   const query = `SELECT * FROM usuarios WHERE email = ?`;
+//   con.query(query, [email], (err, result) => {
+//     if (err) {
+//       console.error(err);
+//       res.sendStatus(500);
+//     } else {
+//       if (result.length > 0) {
+//         const user = result[0];
+//         if (user.password === password) {
+//           // Las credenciales son válidas
+
+//           res.sendStatus(200);
+//         } else {
+//           // Contraseña incorrecta
+//           res.sendStatus(401);
+//         }
+//       } else {
+//         // Usuario no encontrado
+//         res.sendStatus(404);
+//       }
+//     }
+//   });
+// });
+// JSON formate to be manipulated by frontend
+// app.post('/api/login', (req, res) => {
+//   const { email, password } = req.body;
+//   const query = `SELECT * FROM usuarios WHERE email = ?`;
+//   con.query(query, [email], (err, result) => {
+//     if (err) {
+//       console.error(err);
+//       res.status(500).json({ error: 'Error en el servidor' });
+//     } else {
+//       if (result.length > 0) {
+//         const user = result[0];
+//         if (user.password === password) {
+//           // Las credenciales son válidas
+//           res.status(200).json({ user });
+//         } else {
+//           // Contraseña incorrecta
+//           res.status(401).json({ error: 'Credenciales inválidas' });
+//         }
+//       } else {
+//         // Usuario no encontrado
+//         res.status(404).json({ error: 'Usuario no encontrado' });
+//       }
+//     }
+//   });
+// });
+
+/////////////// FUNCIONA
+// app.post('/api/login', (req, res) => {
+//   const { email, password } = req.body;
+//   const query = `SELECT * FROM usuarios WHERE email = ?`;
+//   con.query(query, [email], (err, result) => {
+//     if (err) {
+//       console.error(err);
+//       res.status(500).json({ error: 'Error en el servidor' });
+//     } else {
+//       if (result.length > 0) {
+//         const user = result[0];
+//         if (user.password === password) {
+//           // Las credenciales son válidas
+//           res.status(200).json({ name: user.nombre, email: user.email });
+//         } else {
+//           // Contraseña incorrecta
+//           res.status(401).json({ error: 'Credenciales inválidas' });
+//         }
+//       } else {
+//         // Usuario no encontrado
+//         res.status(404).json({ error: 'Usuario no encontrado' });
+//       }
+//     }
+//   });
+// });
 app.post('/api/login', (req, res) => {
   const { email, password } = req.body;
   const query = `SELECT * FROM usuarios WHERE email = ?`;
   con.query(query, [email], (err, result) => {
     if (err) {
       console.error(err);
-      res.sendStatus(500);
+      res.status(500).json({ error: 'Error en el servidor' });
     } else {
       if (result.length > 0) {
         const user = result[0];
         if (user.password === password) {
           // Las credenciales son válidas
-
-          res.sendStatus(200);
+          res.status(200).json({ name: user.nombre, email: user.email });
         } else {
           // Contraseña incorrecta
-          res.sendStatus(401);
+          res.status(401).json({ error: 'Credenciales inválidas' });
         }
       } else {
         // Usuario no encontrado
-        res.sendStatus(404);
+        res.status(404).json({ error: 'Usuario no encontrado' });
       }
     }
   });
 });
+
+/////////////// FUNCIONA
+// app.get('/api/user/:email', (req, res) => {
+//   const { email } = req.params;
+//   const query = `SELECT nombre FROM usuarios WHERE email = ?`;
+//   con.query(query, [email], (err, result) => {
+//     if (err) {
+//       console.error(err);
+//       res.status(500).json({ error: 'Error en el servidor' });
+//     } else {
+//       if (result.length > 0) {
+//         const { nombre } = result[0];
+//         res.status(200).json({ name: nombre });
+//       } else {
+//         res.status(404).json({ error: 'Usuario no encontrado' });
+//       }
+//     }
+//   });
+// });
+///////////////////

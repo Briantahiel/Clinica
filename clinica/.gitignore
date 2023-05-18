@@ -1,5 +1,7 @@
 npm install express mysql body-parser cors
 npm i react-router-dom
+npm install prop-types
+
 # Logs
 logs
 *.log
