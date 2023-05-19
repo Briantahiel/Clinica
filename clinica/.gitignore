@@ -1,8 +1,9 @@
+# Dependencies installed
 npm install express mysql body-parser cors
 npm i react-router-dom
 npm install prop-types
 npm install luxon
-
+npm install sweetalert2
 
 # Logs
 logs
