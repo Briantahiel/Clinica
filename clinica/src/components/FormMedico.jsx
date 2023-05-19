@@ -1,64 +1,51 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 
-const Form= () => {
-  const [dni, setDni] = useState('');
+const MedicoForm = () => {
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
+  const [especialidad, setEspecialidad] = useState('');
+  const [telefono, setTelefono] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:5000/api/usuarios', {
+      const response = await fetch('http://localhost:5000/api/medicos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          dni,
           nombre,
           apellido,
+          especialidad,
+          telefono,
           email,
-          password,
         }),
       });
 
       if (response.ok) {
-        alert('Usuario registrado exitosamente');
+        alert('Médico agregado exitosamente');
         // Reiniciar los campos del formulario
-        setDni('');
         setNombre('');
         setApellido('');
+        setEspecialidad('');
+        setTelefono('');
         setEmail('');
-        setPassword('');
       } else {
-        throw new Error('Error al registrar el usuario');
+        throw new Error('Error al agregar el médico');
       }
     } catch (error) {
       console.error(error);
-      alert('Hubo un error al registrar el usuario');
+      alert('Hubo un error al agregar el médico');
     }
   };
 
   return (
-    <>
     <div>
-      <h2>Formulario de Usuario</h2>
+      <h2>Formulario de Médico</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="dni">DNI:</label>
-          <input
-            type="text"
-            id="dni"
-            name="dni"
-            value={dni}
-            onChange={(e) => setDni(e.target.value)}
-            required
-          />
-        </div>
         <div>
           <label htmlFor="nombre">Nombre:</label>
           <input
@@ -82,6 +69,28 @@ const Form= () => {
           />
         </div>
         <div>
+          <label htmlFor="especialidad">Especialidad:</label>
+          <input
+            type="text"
+            id="especialidad"
+            name="especialidad"
+            value={especialidad}
+            onChange={(e) => setEspecialidad(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="telefono">Teléfono:</label>
+          <input
+            type="text"
+            id="telefono"
+            name="telefono"
+            value={telefono}
+            onChange={(e) => setTelefono(e.target.value)}
+            required
+          />
+        </div>
+        <div>
           <label htmlFor="email">Email:</label>
           <input
             type="email"
@@ -92,23 +101,10 @@ const Form= () => {
             required
           />
         </div>
-        <div>
-          <label htmlFor="password">Contraseña:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Enviar</button>
+        <button type="submit">Agregar Médico</button>
       </form>
     </div>
-    <Link to='/login'>Log in</Link>
-    </>
   );
 };
 
-export default Form;
+export default MedicoForm;

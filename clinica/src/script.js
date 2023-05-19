@@ -28,7 +28,7 @@ con.connect(err => {
   if (err) throw err;
   console.log('Conexión exitosa a la base de datos');
 });
-
+///////Pacientes////////
 app.post('/api/usuarios', (req, res) => {
   const { dni, nombre, apellido, email, password } = req.body;
   const query = `INSERT INTO usuarios (dni, nombre, apellido, email, password) VALUES (?, ?, ?, ?, ?)`;
@@ -38,10 +38,83 @@ app.post('/api/usuarios', (req, res) => {
   });
 });
 
+// app.get('/api/usuarios', (req, res) => {
+//   const query = 'SELECT * FROM usuarios';
+
+//   con.query(query, (err, result) => {
+//     if (err) {
+//       console.error(err);
+//       return res.status(500).json({ error: 'Error en el servidor' });
+//     }
+
+//     res.status(200).json(result);
+//   });
+// });
+app.get('/api/usuarios', (req, res) => {
+  const email = req.query.email;
+  const query = 'SELECT * FROM usuarios WHERE email = ?';
+  con.query(query, [email], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Error en el servidor' });
+    }
+
+    res.status(200).json(result);
+  });
+});
+
+/////////Medicos////////
+// app.post('/api/medicos', (req, res) => {
+//   const { nombre, apellido, especialidad, telefono, email } = req.body;
+//   const query = 'INSERT INTO medicos (nombre, apellido, especialidad, telefono, email) VALUES (?, ?, ?, ?, ?)';
+//   con.query(query, [nombre, apellido, especialidad, telefono, email], (err, result) => {
+//     if (err) throw err;
+//     res.sendStatus(200);
+//   });
+// });
+app.post('/api/medicos', (req, res) => {
+  const { nombre, apellido, especialidad, telefono, email } = req.body;
+  const query = 'INSERT INTO medicos (nombre, apellido, especialidad, telefono, email) VALUES (?, ?, ?, ?, ?)';
+  con.query(query, [nombre, apellido, especialidad, telefono, email], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Error en el servidor' });
+    } else {
+      res.status(200).json({ message: 'Médico agregado exitosamente' });
+    }
+  });
+});
+app.get('/api/medicos', (req, res) => {
+  const query = 'SELECT * FROM medicos';
+  con.query(query, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Error en el servidor' });
+    } else {
+      res.status(200).json(result);
+    }
+  });
+});
+
+
 app.listen(port, () => {
   console.log(`Servidor en ejecución en el puerto ${port}`);
 });
+////////////Citas/////////////////
+app.post('/api/citas', (req, res) => {
+  const { paciente_id, medico_id, fecha, hora, motivo } = req.body;
+  const query = 'INSERT INTO citas (paciente_id, medico_id, fecha, hora, motivo) VALUES (?, ?, ?, ?, ?)';
+  con.query(query, [paciente_id, medico_id, fecha, hora, motivo], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Error en el servidor' });
+    } else {
+      res.status(200).json({ message: 'Cita agregada exitosamente' });
+    }
+  });
+});
 
+//////////////////////////////////
 //////////////
 
 // app.post('/api/login', (req, res) => {

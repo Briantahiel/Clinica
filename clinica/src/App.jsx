@@ -4,6 +4,7 @@ import { UserProvider } from './assets/Provider/UserProvider';
 import Home from './components/Home';
 import Login from './components/Login';
 import Form from './components/Form';
+import MedicoForm from './components/FormMedico';
 // import Navbar from './components/Navbar';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/form" element={<Form />} />
+          <Route path="/formmed" element={<MedicoForm />} />
         </Routes>
       </BrowserRouter>
     </UserProvider>
