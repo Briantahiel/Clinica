@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from '../assets/Provider/UserProvider';
+import Swal from 'sweetalert2';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -30,10 +31,21 @@ const Login = () => {
         // login({email})
         const { name, email } = await response.json();
         login({ email, name });
-        alert('Inicio de sesión exitoso');
+        // alert('Inicio de sesión exitoso');
+        Swal.fire({
+          icon: 'success',
+          title: 'Inicio de sesión exitoso',
+          showConfirmButton: false,
+          timer: 800
+        })
         navigate('/');
       } else if (response.status === 401) {
-        throw new Error('Credenciales inválidas');
+        // throw new Error('Credenciales inválidas');
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Credenciales inválidas!',
+        })
       } else {
         throw new Error('Error en el servidor');
       }
