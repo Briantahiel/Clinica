@@ -134,6 +134,37 @@ app.get('/api/citas', (req, res) => {
   });
 });
 
+// app.get('/api/cita', (req, res) => {
+//   const { paciente_id, fecha, medico_id } = req.query;
+//   let query = `SELECT * FROM citas`;
+
+//   const params = [];
+
+//   if (paciente_id && fecha && medico_id) {
+//     query += ` WHERE paciente_id = ? AND fecha = ? AND medico_id = ?`;
+//     params.push(paciente_id, fecha, medico_id);
+//   } else if (paciente_id) {
+//     query += ` WHERE paciente_id = ?`;
+//     params.push(paciente_id);
+//   } else if (fecha) {
+//     query += ` WHERE fecha = ?`;
+//     params.push(fecha);
+//   } else if (medico_id) {
+//     query += ` WHERE medico_id = ?`;
+//     params.push(medico_id);
+//   }
+
+//   con.query(query, params, (err, result) => {
+//     if (err) {
+//       console.error(err);
+//       res.status(500).json({ error: 'Error en el servidor' });
+//     } else {
+//       res.status(200).json(result);
+//     }
+//   });
+// });
+
+
 //////////////Login/////////////
 app.post('/api/login', (req, res) => {
   const { email, password } = req.body;
