@@ -12,7 +12,6 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -27,10 +26,12 @@ const Login = () => {
 
         }),
       });
+
       if (response.status === 200) {
         // login({email})
-        const { name, email } = await response.json();
-        login({ email, name });
+        const { nombre, email } = await response.json();
+        login({ nombre, email });
+
         // alert('Inicio de sesión exitoso');
         Swal.fire({
           icon: 'success',

@@ -14,7 +14,7 @@ const con = mysql.createConnection({
     host: '127.0.0.1',
     user: 'Brianmgz',
     password: 'brianTahielDante',
-    database: 'centro_medico',
+    database: 'consultorios',
     port: 3306,
 });
 app.get('/', (req, res) => {
@@ -28,164 +28,88 @@ con.connect(err => {
   if (err) throw err;
   console.log('Conexión exitosa a la base de datos');
 });
-///////Pacientes////////
-app.post('/api/usuarios', (req, res) => {
-  const { dni, nombre, apellido, email, password } = req.body;
-  const query = `INSERT INTO usuarios (dni, nombre, apellido, email, password) VALUES (?, ?, ?, ?, ?)`;
-  con.query(query, [dni, nombre, apellido, email, password], (err, result) => {
-    if (err) throw err;
-    res.sendStatus(200);
-  });
-});
-
-// app.get('/api/usuarios', (req, res) => {
-//   const email = req.query.email;
-//   const query = 'SELECT * FROM usuarios WHERE email = ?';
-//   con.query(query, [email], (err, result) => {
-//     if (err) {
-//       console.error(err);
-//       return res.status(500).json({ error: 'Error en el servidor' });
-//     }
-
-//     res.status(200).json(result);
-//   });
-// });
-// app.get('/api/usuarios', (req, res) => {
-//   const email = req.query.email;
-//   const query = 'SELECT id FROM usuarios WHERE email = ?';
-//   con.query(query, [email], (err, result) => {
-//     if (err) {
-//       console.error(err);
-//       return res.status(500).json({ error: 'Error en el servidor' });
-//     }
-
-//     res.status(200).json(result);
-//   });
-// });
-app.get('/api/usuarios', (req, res) => {
-  const email = req.query.email;
-  const query = 'SELECT id FROM usuarios WHERE email = ?';
-  con.query(query, [email], (err, result) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).json({ error: 'Error en el servidor' });
-    }
-
-    if (result.length === 0) {
-      return res.status(404).json({ error: 'Paciente no encontrado' });
-    }
-
-    res.status(200).json(result);
-  });
-});
-
-/////Médicos///////////////7
-app.post('/api/medicos', (req, res) => {
-  const { nombre, apellido, especialidad, telefono, email } = req.body;
-  const query = 'INSERT INTO medicos (nombre, apellido, especialidad, telefono, email) VALUES (?, ?, ?, ?, ?)';
-  con.query(query, [nombre, apellido, especialidad, telefono, email], (err, result) => {
-    if (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Error en el servidor' });
-    } else {
-      res.status(200).json({ message: 'Médico agregado exitosamente' });
-    }
-  });
-});
-app.get('/api/medicos', (req, res) => {
-  const query = 'SELECT * FROM medicos';
-  con.query(query, (err, result) => {
-    if (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Error en el servidor' });
-    } else {
-      res.status(200).json(result);
-    }
-  });
-});
-
 
 app.listen(port, () => {
   console.log(`Servidor en ejecución en el puerto ${port}`);
 });
-////////////Citas/////////////////
-app.post('/api/citas', (req, res) => {
-  const { paciente_id, medico_id, fecha, hora, motivo } = req.body;
-  const query = 'INSERT INTO citas (paciente_id, medico_id, fecha, hora, motivo) VALUES (?, ?, ?, ?, ?)';
-  con.query(query, [paciente_id, medico_id, fecha, hora, motivo], (err, result) => {
+// Definir el endpoint para registrar pacientes
+app.post('/api/pacientes', (req, res) => {
+  const { dni, nombre, apellido, email, password } = req.body;
+
+  // Realizar la consulta SQL para insertar un nuevo paciente
+  const query = `INSERT INTO pacientes (dni, nombre, apellido, email, password)
+                 VALUES (?, ?, ?, ?, ?)`;
+
+  con.query(query, [dni, nombre, apellido, email, password], (err) => {
     if (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Error en el servidor' });
+      console.error('Error al registrar el paciente: ', err);
+      res.status(500).json({ error: 'Error al registrar el paciente' });
     } else {
-      res.status(200).json({ message: 'Cita agregada exitosamente' });
+      console.log('Paciente registrado exitosamente');
+      res.status(200).json({ message: 'Paciente registrado exitosamente' });
     }
   });
 });
-app.get('/api/citas', (req, res) => {
-  const { paciente_id, fecha, medico_id } = req.query;
-  const query = `SELECT * FROM citas WHERE paciente_id = ? AND fecha = ? AND medico_id = ?`;
-  con.query(query, [paciente_id, fecha, medico_id], (err, result) => {
-    if (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Error en el servidor' });
-    } else {
-      res.status(200).json(result);
-    }
-  });
-});
-
-// app.get('/api/cita', (req, res) => {
-//   const { paciente_id, fecha, medico_id } = req.query;
-//   let query = `SELECT * FROM citas`;
-
-//   const params = [];
-
-//   if (paciente_id && fecha && medico_id) {
-//     query += ` WHERE paciente_id = ? AND fecha = ? AND medico_id = ?`;
-//     params.push(paciente_id, fecha, medico_id);
-//   } else if (paciente_id) {
-//     query += ` WHERE paciente_id = ?`;
-//     params.push(paciente_id);
-//   } else if (fecha) {
-//     query += ` WHERE fecha = ?`;
-//     params.push(fecha);
-//   } else if (medico_id) {
-//     query += ` WHERE medico_id = ?`;
-//     params.push(medico_id);
-//   }
-
-//   con.query(query, params, (err, result) => {
-//     if (err) {
-//       console.error(err);
-//       res.status(500).json({ error: 'Error en el servidor' });
-//     } else {
-//       res.status(200).json(result);
-//     }
-//   });
-// });
-
-
-//////////////Login/////////////
+// Definir el endpoint para loguear pacientes
+// Definir el endpoint para el inicio de sesión
 app.post('/api/login', (req, res) => {
   const { email, password } = req.body;
-  const query = `SELECT * FROM usuarios WHERE email = ?`;
-  con.query(query, [email], (err, result) => {
+
+  // Realizar la consulta SQL para verificar las credenciales del usuario
+  const query = `SELECT * FROM pacientes WHERE email = ? AND password = ?`;
+  con.query(query, [email, password], (err, results) => {
     if (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Error en el servidor' });
+      console.error('Error al verificar las credenciales del usuario: ', err);
+      res.status(500).json({ error: 'Error al verificar las credenciales del usuario' });
     } else {
-      if (result.length > 0) {
-        const user = result[0];
-        if (user.password === password) {
-          // Las credenciales son válidas
-          res.status(200).json({ name: user.nombre, email: user.email });
-        } else {
-          // Contraseña incorrecta
-          res.status(401).json({ error: 'Credenciales inválidas' });
-        }
+      if (results.length > 0) {
+        // Credenciales válidas, el usuario está autenticado
+        const queryUser = `SELECT nombre, email FROM pacientes WHERE email = ?`;
+        con.query(queryUser, [email], (err, userResults) => {
+          if (err) {
+            console.error('Error al obtener los datos del usuario: ', err);
+            res.status(500).json({ error: 'Error al obtener los datos del usuario' });
+          } else {
+            if (userResults.length > 0) {
+              const { nombre, email } = userResults[0];
+              console.log('Inicio de sesión exitoso');
+              res.status(200).json({ message: 'Inicio de sesión exitoso', nombre, email });
+            } else {
+              console.log('No se encontraron datos de usuario');
+              res.status(401).json({ error: 'No se encontraron datos de usuario' });
+            }
+          }
+        });
       } else {
-        // Usuario no encontrado
-        res.status(404).json({ error: 'Usuario no encontrado' });
+        // Credenciales inválidas, el usuario no está autenticado
+        console.log('Credenciales inválidas, inicio de sesión fallido');
+        res.status(401).json({ error: 'Credenciales inválidas, inicio de sesión fallido' });
+      }
+    }
+  });
+});
+/////Consulta de Citas
+app.get('/api/citas/:id', (req, res) => {
+  const citaId = req.params.id;
+
+  const query = `
+    SELECT c.id, c.fecha, c.hora, c.motivo, m.nombre AS nombre_medico, p.nombre AS nombre_paciente, p.id AS paciente_id
+    FROM citas AS c
+    INNER JOIN medicos AS m ON c.medico_id = m.id
+    INNER JOIN pacientes AS p ON c.paciente_id = p.id
+    WHERE c.id = ?
+  `;
+
+  con.query(query, [citaId], (err, results) => {
+    if (err) {
+      console.error('Error al obtener los datos de la cita: ', err);
+      res.status(500).json({ error: 'Error al obtener los datos de la cita' });
+    } else {
+      if (results.length > 0) {
+        const cita = results[0];
+        res.status(200).json(cita);
+      } else {
+        res.status(404).json({ error: 'Cita no encontrada' });
       }
     }
   });
