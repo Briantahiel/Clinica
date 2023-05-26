@@ -1,20 +1,20 @@
 
 import { useEffect, useState } from "react";
 import { useUserContext } from "../assets/Provider/UserProvider";
-// import { Link } from "react-router-dom";
-// import { DateTime } from 'luxon';
+import { Link } from "react-router-dom";
+import Medicos from "./Medicos";
 
-const Home = (citaId) => {
+const Home = () => {
   const { loggedInUser } = useUserContext();
-  const [cita, setCita] = useState(null);
+  const [citas, setCitas] = useState(null);
 
   useEffect(() => {
     const fetchCita = async () => {
       try {
-        const response = await fetch(`http://localhost:5000}/api/citas/${citaId}`);
+        const response = await fetch(`http://localhost:5000/api/citas/${loggedInUser.paciente_id}`);
         if (response.ok) {
           const data = await response.json();
-          setCita(data);
+          setCitas(data);
         } else {
           throw new Error('Error al obtener los datos de la cita');
         }
@@ -24,31 +24,70 @@ const Home = (citaId) => {
     };
 
     fetchCita();
-  }, [citaId]);
+  }, [loggedInUser, setCitas]);
   
-
+  const handleActualizarCitas = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/citas/${loggedInUser.paciente_id}`);
+      if (response.ok) {
+        const data = await response.json();
+        alert('Lista actualizada')
+        setCitas(data);
+      } else {
+        throw new Error('Error al obtener los datos de la cita');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+  const handleCancelarCita = async (citaId) => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/citas/${citaId}/${loggedInUser.paciente_id}`, {
+        method: 'DELETE',
+      });
+      if (response.ok) {
+        setCitas((prevCitas) => prevCitas.filter((cita) => cita.id !== citaId));
+        alert('Cita cancelada exitosamente');
+      } else {
+        throw new Error('Error al cancelar la cita');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
   return (
     <>
-    <div>
-      <h1>Reservar Cita</h1>
-      {loggedInUser &&
-        <h2>Bienvenido, {loggedInUser.nombre}</h2>
-      }
-    </div>
-    <div>
-      <h2>Detalles de la cita</h2>
-      {cita ? (
-        <div>
-          <p>Fecha: {cita.fecha}</p>
-          <p>Hora: {cita.hora}</p>
-          <p>Motivo: {cita.motivo}</p>
-        </div>
-      ) : (
-        <p>Cargando detalles de la cita...</p>
-      )}
-    </div>
+      <div>
+        <h3>Clinica</h3>
+        {loggedInUser ? <h4>Bienvenido, {loggedInUser.nombre}</h4> : <p>Debes <Link to='/login'>Iniciar sesión</Link> para reservar una cita</p>}
+      </div>
+      <Medicos />
+      <div>
+        {loggedInUser ? (
+          <>
+            <h4>Detalles de las citas</h4>
+            {citas && citas.length > 0 ? (
+              citas.map((cita) => (
+                <div key={cita.id}>
+                  <p>Fecha: {cita.fecha}</p>
+                  <p>Hora: {cita.hora}</p>
+                  <p>Motivo: {cita.motivo}</p>
+                  <button onClick={() => handleCancelarCita(cita.id)}>Cancelar Cita</button>
+                </div>
+              ))
+            ) : (
+              <p>No tienes citas</p>
+            )}
+            <button onClick={handleActualizarCitas}>Actualizar Citas</button>
+          </>
+        ) : (
+          null
+        )}
+      </div>
     </>
-  );
+  );  
 };
 
 export default Home;

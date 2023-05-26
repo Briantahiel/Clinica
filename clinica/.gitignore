@@ -4,6 +4,11 @@ npm i react-router-dom
 npm install prop-types
 npm install luxon
 npm install sweetalert2
+npm install eslint --save-dev
+npm install multer
+npm install express mysql body-parser cors multer fs
+npm install base64-js
+npm install react-datepicker
 
 # Logs
 logs

@@ -29,8 +29,8 @@ const Login = () => {
 
       if (response.status === 200) {
         // login({email})
-        const { nombre, email } = await response.json();
-        login({ nombre, email });
+        const { nombre, email, paciente_id } = await response.json();
+        login({ nombre, email, paciente_id });
 
         // alert('Inicio de sesión exitoso');
         Swal.fire({

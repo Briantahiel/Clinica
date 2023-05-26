@@ -2,37 +2,41 @@ import { useState } from 'react';
 
 const MedicoForm = () => {
   const [nombre, setNombre] = useState('');
-  const [apellido, setApellido] = useState('');
   const [especialidad, setEspecialidad] = useState('');
-  const [telefono, setTelefono] = useState('');
-  const [email, setEmail] = useState('');
+  const [dni, setDni] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [descripcion, setDescripcion] = useState('');
+  const [imagen, setImagen] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
+      const formData = new FormData();
+      formData.append('nombre', nombre);
+      formData.append('especialidad', especialidad);
+      formData.append('dni', dni);
+      formData.append('username', username);
+      formData.append('password', password);
+      formData.append('descripcion', descripcion);
+      formData.append('imagen', imagen);
+
       const response = await fetch('http://localhost:5000/api/medicos', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          nombre,
-          apellido,
-          especialidad,
-          telefono,
-          email,
-        }),
+        body: formData,
       });
 
       if (response.ok) {
         alert('Médico agregado exitosamente');
         // Reiniciar los campos del formulario
         setNombre('');
-        setApellido('');
         setEspecialidad('');
-        setTelefono('');
-        setEmail('');
+        setDni('');
+        setUsername('');
+        setPassword('');
+        setDescripcion('');
+        setImagen(null);
       } else {
         throw new Error('Error al agregar el médico');
       }
@@ -40,6 +44,11 @@ const MedicoForm = () => {
       console.error(error);
       alert('Hubo un error al agregar el médico');
     }
+  };
+
+  const handleImagenChange = (e) => {
+    const file = e.target.files[0];
+    setImagen(file);
   };
 
   return (
@@ -58,17 +67,6 @@ const MedicoForm = () => {
           />
         </div>
         <div>
-          <label htmlFor="apellido">Apellido:</label>
-          <input
-            type="text"
-            id="apellido"
-            name="apellido"
-            value={apellido}
-            onChange={(e) => setApellido(e.target.value)}
-            required
-          />
-        </div>
-        <div>
           <label htmlFor="especialidad">Especialidad:</label>
           <input
             type="text"
@@ -80,24 +78,56 @@ const MedicoForm = () => {
           />
         </div>
         <div>
-          <label htmlFor="telefono">Teléfono:</label>
+          <label htmlFor="dni">DNI:</label>
           <input
             type="text"
-            id="telefono"
-            name="telefono"
-            value={telefono}
-            onChange={(e) => setTelefono(e.target.value)}
+            id="dni"
+            name="dni"
+            value={dni}
+            onChange={(e) => setDni(e.target.value)}
             required
           />
         </div>
         <div>
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="username">Username:</label>
           <input
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            id="username"
+            name="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="descripcion">Descripción:</label>
+          <textarea
+            id="descripcion"
+            name="descripcion"
+            value={descripcion}
+            onChange={(e) => setDescripcion(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="imagen">Imagen:</label>
+          <input
+            type="file"
+            id="imagen"
+            name="imagen"
+            accept="image/*"
+            onChange={handleImagenChange}
             required
           />
         </div>
