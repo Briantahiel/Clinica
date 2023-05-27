@@ -95,6 +95,36 @@ app.post('/api/login', (req, res) => {
 });
 
 /////Consulta de Citas
+app.get('/api/citas', (req, res) => {
+  const query = 'SELECT * FROM citas';
+
+  con.query(query, (err, result) => {
+    if (err) {
+      console.error('Error al obtener las citas:', err);
+      res.status(500).json({ error: 'Error al obtener las citas' });
+    } else {
+      res.status(200).json(result);
+    }
+  });
+});
+////
+app.get('/api/citasfecha', (req, res) => {
+  const fecha = req.query.fecha;
+  const medicoId = req.query.medico_id;
+
+  // Consultar la base de datos para verificar si la cita está ocupada
+  const query = 'SELECT * FROM citas WHERE fecha = ? AND medico_id = ?';
+  con.query(query, [fecha, medicoId], (error, results) => {
+    if (error) {
+      console.error('Error al consultar la base de datos:', error);
+      res.status(500).json({ error: 'Error al consultar la base de datos' });
+    } else {
+      const citasOcupadas = results.length > 0;
+      res.json({ disponible: !citasOcupadas });
+    }
+  });
+});
+////
 app.get('/api/citas/:id', (req, res) => {
   const pacienteId = req.params.id;
 
@@ -151,7 +181,22 @@ app.delete('/api/citas/:id/:pacienteId', (req, res) => {
   });
 });
 
+app.post('/api/citas', (req, res) => {
+  const { paciente_id, medico_id, fecha, hora, motivo } = req.body;
 
+  const query = `INSERT INTO citas (paciente_id, medico_id, fecha, hora, motivo) VALUES (?, ?, ?, ?, ?)`;
+  const values = [paciente_id, medico_id, fecha, hora, motivo];
+
+  con.query(query, values, (err, result) => {
+    if (err) {
+      console.error('Error al crear la cita:', err);
+      res.status(500).json({ error: 'Error al crear la cita' });
+    } else {
+      console.log('Cita creada con éxito');
+      res.status(200).json({ message: 'Cita creada con éxito' });
+    }
+  });
+});
 ////Medicos
 // app.get('/api/medicos', (req, res) => {
 //   const obtenerMedicos = 'SELECT * FROM medicos';

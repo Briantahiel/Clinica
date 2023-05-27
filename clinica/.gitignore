@@ -9,6 +9,7 @@ npm install multer
 npm install express mysql body-parser cors multer fs
 npm install base64-js
 npm install react-datepicker
+npm install date-fns
 
 # Logs
 logs

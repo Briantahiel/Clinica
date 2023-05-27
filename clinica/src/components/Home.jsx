@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useUserContext } from "../assets/Provider/UserProvider";
 import { Link } from "react-router-dom";
 import Medicos from "./Medicos";
+import "../App.css"
 
 const Home = () => {
   const { loggedInUser } = useUserContext();
@@ -61,7 +62,7 @@ const Home = () => {
     <>
       <div>
         <h3>Clinica</h3>
-        {loggedInUser ? <h4>Bienvenido, {loggedInUser.nombre}</h4> : <p>Debes <Link to='/login'>Iniciar sesión</Link> para reservar una cita</p>}
+        {loggedInUser ? <h4>Bienvenido {loggedInUser.nombre}</h4> : <p>Debes <Link to='/login'>Iniciar sesión</Link> para reservar una cita</p>}
       </div>
       <Medicos />
       <div>
@@ -70,7 +71,7 @@ const Home = () => {
             <h4>Detalles de las citas</h4>
             {citas && citas.length > 0 ? (
               citas.map((cita) => (
-                <div key={cita.id}>
+                <div key={cita.id} className="container-citas">
                   <p>Fecha: {cita.fecha}</p>
                   <p>Hora: {cita.hora}</p>
                   <p>Motivo: {cita.motivo}</p>
