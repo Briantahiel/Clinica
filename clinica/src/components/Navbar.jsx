@@ -11,11 +11,10 @@ const Navbar = () => {
           <Link to="/form">Form</Link>
         </li>
         <li>
-          <Link to="/home">Home</Link>
+          <Link to="/">Home</Link>
         </li>
       </ul>
     </nav>
   );
 };
-
-export default Navbar;
+ export default Navbar;

@@ -5,6 +5,14 @@ import { addDays, isWeekend, setHours, setMinutes, setSeconds, format, addMinute
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../App.css";
+// import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { Button, CardActionArea } from '@mui/material';
+
+// import dayjs from "dayjs";
 
 const Medicos = () => {
   const { loggedInUser } = useUserContext();
@@ -216,26 +224,27 @@ const Medicos = () => {
 
   return (
     <>
-      <div className="container-medicos" style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        <h4>Listado de Médicos</h4>
-        <div className="container-cards" style={{ display: "flex", justifyContent: "space-around", flexWrap: "wrap" }}>
-          {medicos && medicos.length > 0 ? (
-            medicos.map((medico) => (
-              <div className="card" key={medico.dni} style={{ width: "18rem", margin: "10px", padding: "0" }}>
-                <img
-                  src={convertBufferToDataURL(medico.imagen.data)}
-                  className="card-img-top"
-                  alt="..."
-                  style={{ width: "100%", height: "100%", margin: 0, padding: 0 }}
+       <div className="container-medicos" style={{ maxWidth: "1200px", margin: "0 auto" }}>
+      <h4>Listado de Médicos</h4>
+      <div className="container-cards" style={{ display: "flex", justifyContent: "space-around", flexWrap: "wrap" }}>
+        {medicos && medicos.length > 0 ? (
+          medicos.map((medico) => (
+            <Card key={medico.dni} sx={{ width: "18rem", margin: "10px", padding: "0" }}>
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image={convertBufferToDataURL(medico.imagen.data)}
+                  alt="Doctor"
                 />
-                <div className="card-body" style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-                  <h5 className="card-title">
+                <CardContent style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+                  <Typography gutterBottom variant="h5" component="div">
                     {medico.nombre}: {medico.especialidad}.
-                  </h5>
-                  <p className="list-group-item" style={{ height: "150px", overflow: "hidden", textOverflow: "ellipsis" }}>
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" style={{ height: "150px", overflow: "hidden", textOverflow: "ellipsis" }}>
                     {medico.descripcion}.
-                  </p>
-                  <div className="card-footer" style={{ marginTop: "auto" }}>
+                  </Typography>
+                  <div style={{ marginTop: "auto" }}>
                     {loggedInUser ? (
                       <>
                         <DatePicker
@@ -269,21 +278,22 @@ const Medicos = () => {
                           value={selectedMotivos[medico.id] || ""}
                           onChange={(event) => handleMotivoChange(event, medico.id)}
                         />
-
-                        <button onClick={() => Reserva(medico.id)}>Reserva</button>
+                        <Button variant="contained" onClick={() => Reserva(medico.id)}>Reserva</Button>
                       </>
                     ) : (
-                      <Link to="/login">Reserva</Link>
+                      <Link to="/login"><Button variant="contained">Reserva</Button></Link>
                     )}
                   </div>
-                </div>
-              </div>
-            ))
-          ) : (
-            <p>No se encontraron médicos</p>
-          )}
-        </div>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          ))
+        ) : (
+          <p>No se encontraron médicos</p>
+        )}
       </div>
+    </div>
+
     </>
   );
 };
