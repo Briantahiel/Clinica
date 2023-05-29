@@ -269,3 +269,33 @@ app.post('/api/medicos', upload.single('imagen'), (req, res) => {
   // Eliminar el archivo de imagen temporal
   fs.unlinkSync(imagenPath);
 });
+app.get("/api/medicos/:medicoId/ocupado", (req, res) => {
+  const { medicoId } = req.params;
+  const { fecha, hora } = req.query;
+
+  // Verificar si el médico existe en la base de datos
+  const checkMedicoQuery = "SELECT id FROM medicos WHERE id = ?";
+  con.query(checkMedicoQuery, [medicoId], (error, results) => {
+    if (error) {
+      console.error("Error al verificar el médico:", error);
+      res.status(500).json({ error: "Error al verificar el médico" });
+    } else if (results.length === 0) {
+      res.status(404).json({ error: "Médico no encontrado" });
+    } else {
+      // Verificar si el médico está ocupado en la hora y fecha especificadas
+      const checkCitaQuery =
+        "SELECT id FROM citas WHERE medico_id = ? AND fecha = ? AND hora = ?";
+      con.query(checkCitaQuery, [medicoId, fecha, hora], (error, results) => {
+        if (error) {
+          console.error("Error al verificar la disponibilidad del médico:", error);
+          res.status(500).json({ error: "Error al verificar la disponibilidad del médico" });
+        } else if (results.length > 0) {
+          res.json({ ocupado: true });
+        } else {
+          // No hay citas existentes en esa hora y fecha, se puede reservar
+          res.json({ ocupado: false });
+        }
+      });
+    }
+  });
+});

@@ -20,6 +20,8 @@ npm install dayjs
 npm install @mui/material @emotion/react @emotion/styled
 npm install @mui/material @mui/styled-engine-sc styled-components
 npm install @mui/lab
+npm install date-fns@2.x.x date-fns-tz@1.x.x
+
 
 # Logs
 logs
