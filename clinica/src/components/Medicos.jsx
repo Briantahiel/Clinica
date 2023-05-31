@@ -381,7 +381,7 @@ const Medicos = () => {
     );
     return `data:image/jpeg;base64,${base64String}`;
   };
-
+  
   const verificarCitasPaciente = async (medicoId, fechaSeleccionada, pacienteId) => {
     try {
       const response = await fetch(`http://localhost:5000/api/citas/${pacienteId}`);
@@ -392,12 +392,12 @@ const Medicos = () => {
             cita.medico_id === medicoId &&
             format(new Date(cita.fecha), "yyyy-MM-dd") === format(fechaSeleccionada, "yyyy-MM-dd")
         );
-
+  
         if (citaExistente) {
           alert("Ya tienes una cita programada con el mismo médico para este día.");
           return false;
         }
-
+  
         return true;
       } else if (response.status === 404) {
         return true; // El paciente no tiene citas previas
@@ -409,7 +409,7 @@ const Medicos = () => {
       return false;
     }
   };
-
+  
   const Reserva = async (medicoId) => {
     try {
       const pacienteId = loggedInUser.paciente_id;
@@ -448,14 +448,24 @@ const Medicos = () => {
         throw new Error("Error al obtener las citas existentes");
       }
   
-      // Verificar si la hora ya está ocupada para la fecha seleccionada
+      // Verificar si la hora ya está ocupada para la fecha seleccionada, pero solo en el mismo día
       const citasFechaResponse = await fetch(`http://localhost:5000/api/citas?fecha=${cita.fecha}&medico_id=${medicoId}`);
       if (citasFechaResponse.ok) {
         const citasFecha = await citasFechaResponse.json();
-        const horaOcupada = citasFecha.find((cita) => cita.hora === selectedTimes[medicoId]);
-     
+        const horaOcupada = citasFecha.find((cita) => {
+          const citaHora = cita.hora.split(":")[0];
+          const citaMinutos = cita.hora.split(":")[1];
+          const selectedHora = selectedTimes[medicoId].split(":")[0];
+          const selectedMinutos = selectedTimes[medicoId].split(":")[1];
+  
+          return (
+            citaHora === selectedHora &&
+            citaMinutos === selectedMinutos &&
+            format(new Date(cita.fecha), "yyyy-MM-dd") === format(fechaSeleccionada, "yyyy-MM-dd")
+          );
+        });
+  
         if (horaOcupada) {
-
           alert("La hora seleccionada ya está reservada para este día por otro paciente");
           return;
         }
@@ -484,7 +494,6 @@ const Medicos = () => {
             [medicoId]: [...horasOcupadasMedico, selectedTimes[medicoId]],
           };
         });
-        
       } else {
         throw new Error("Error al crear la cita");
       }
@@ -494,7 +503,6 @@ const Medicos = () => {
     }
   };
   
-
   const isWeekday = (date) => {
     const day = date.getDay();
     return day >= 1 && day <= 5;
@@ -545,7 +553,7 @@ const Medicos = () => {
                     <Typography variant="body2" color="text.secondary" style={{ height: "150px", overflow: "hidden", textOverflow: "ellipsis" }}>
                       {medico.descripcion}.
                     </Typography>
-                    <div style={{ marginTop: "auto" }}>
+                    <div style={{ marginTop: "auto"}}>
                       {loggedInUser ? (
                         <>
                           <DatePicker
