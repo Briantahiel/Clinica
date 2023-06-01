@@ -1,9 +1,10 @@
 
 import { useEffect, useState } from "react";
 import { useUserContext } from "../assets/Provider/UserProvider";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Medicos from "./Medicos";
 import "../App.css"
+// import Carouselhome from "./Carousel";
 
 const Home = () => {
   const { loggedInUser } = useUserContext();
@@ -60,9 +61,9 @@ const Home = () => {
   
   return (
     <>
+
       <div>
-        <h3>Clinica</h3>
-        {loggedInUser ? <h4>Bienvenido {loggedInUser.nombre}</h4> : <p>Debes <Link to='/login'>Iniciar sesión</Link> para reservar una cita</p>}
+        {loggedInUser ? <h4>Bienvenido {loggedInUser.nombre}</h4> : null}
       </div>
       <Medicos />
       <div>

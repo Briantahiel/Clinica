@@ -4,11 +4,64 @@
   padding: 2rem;
   text-align: center;
 }
+.container-medicos h4{
+  text-align: start;
+}
 .container-citas{
   display: flex;
   flex-wrap: wrap;
+  color: #313131;
+}
+.logo-img {
+  filter: hue-rotate(-10deg); 
 }
 
+/* Estilos personalizados */
+.custom-datepicker {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.custom-select {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.custom-input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.custom-button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.custom-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
 
 .logo {
   height: 6em;

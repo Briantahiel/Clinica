@@ -106,7 +106,7 @@ const Form= () => {
         <button type="submit">Enviar</button>
       </form>
     </div>
-    <Link to='/login'>Log in</Link>
+    <h6>¿Ya tienes cuenta? <Link to='/login'>Log in</Link></h6>
     </>
   );
 };

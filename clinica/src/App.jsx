@@ -5,13 +5,14 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Form from './components/Form';
 import MedicoForm from './components/FormMedico';
-// import Navbar from './components/Navbar';
+import Navbar from './components/Navbar';
+
 
 function App() {
   return (
     <UserProvider>
       <BrowserRouter>
-      {/* <Navbar /> */}
+      <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
