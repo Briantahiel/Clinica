@@ -1,0 +1,30 @@
+.container-servicios{
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+.container-servicios-info{
+    background-color: rgb(220, 238, 252);
+    text-align: center;
+}
+.card-container{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: center;
+}
+.card-style {
+    position: relative;
+    height: auto;
+  }
+  
+  .card-img {
+    transition: transform 0.8s ease;
+  }
+  
+  .card-img:hover {
+    transform: scale(1.1);
+  }
+  

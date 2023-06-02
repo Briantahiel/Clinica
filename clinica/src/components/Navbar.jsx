@@ -47,18 +47,18 @@ const Navbar = () => {
 
   return (
   <>
-    <AppBar position="static" style={{backgroundColor: 'white'}}>
-      <Container maxWidth="xl">
+    <AppBar style={{ backgroundColor:'white'}} className='appbar'>
+      <Container className='container-appbar'>
         <Toolbar disableGutters>
-        <img className='logo-img' alt='logo' src="./img/logo.png" style={{ width: '70px' }} />     
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+        <img alt='logo' src="./img/logo.png" style={{ width: '70px' }} />     
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }}}>
             <IconButton
               size="large"
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="inherit"
+              color="black"
             >
               <MenuIcon />
             </IconButton>
@@ -89,10 +89,10 @@ const Navbar = () => {
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button
+              <Button className='btn-pages'
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: '#313131', display: 'block' }}
+                sx={{ my: 3, color: 'black', display: 'block' }}
               >
                 {page}
               </Button>
@@ -100,20 +100,20 @@ const Navbar = () => {
           </Box>
           <Box sx={{ flexGrow: 0 }}>
           {loggedInUser ? (
-        <Tooltip title="Ajustes">
-          <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} >
-            <Avatar alt={loggedInUser.nombre}  src="/static/images/avatar/2.jpg" />
+        <Tooltip title="Open settings">
+          <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+            <Avatar alt={loggedInUser.nombre} src="/static/images/avatar/2.jpg" />
           </IconButton>
         </Tooltip>
       ) : (
-        <Tooltip title="Ajustes" >
+        <Tooltip title="Ajustes">
           <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
             <Avatar alt={loggedInUser?.nombre}>
               {loggedInUser?.nombre?.charAt(0)}
             </Avatar>
           </IconButton>
         </Tooltip>
-      )}
+          )}
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
@@ -149,6 +149,10 @@ const Navbar = () => {
         </Toolbar>
       </Container>
     </AppBar>
+    <div className='background-banner'>
+
+    </div>
+ 
     </>
   );
 }

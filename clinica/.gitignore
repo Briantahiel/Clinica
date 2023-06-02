@@ -23,6 +23,7 @@ npm install @mui/lab
 npm install date-fns@2.x.x date-fns-tz@1.x.x
 npm install @material-ui/core
 npm install react-material-ui-carousel
+npm install @mui/styles --legacy-peer-deps
 
 
 # Logs
@@ -35,6 +36,8 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+package-lock.json
+package.json
 dist
 dist-ssr
 *.local

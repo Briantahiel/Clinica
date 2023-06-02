@@ -5,7 +5,8 @@ import { useUserContext } from "../assets/Provider/UserProvider";
 import Medicos from "./Medicos";
 import "../App.css"
 // import Carouselhome from "./Carousel";
-
+import "../Home.css"
+import Servicios from "./Servicios";
 const Home = () => {
   const { loggedInUser } = useUserContext();
   const [citas, setCitas] = useState(null);
@@ -60,12 +61,12 @@ const Home = () => {
   };
   
   return (
-    <>
-
-      <div>
+    <> 
+      <div className="home-user">
         {loggedInUser ? <h4>Bienvenido {loggedInUser.nombre}</h4> : null}
       </div>
       <Medicos />
+      <Servicios />
       <div>
         {loggedInUser ? (
           <>
@@ -88,6 +89,7 @@ const Home = () => {
           null
         )}
       </div>
+    
     </>
   );  
 };

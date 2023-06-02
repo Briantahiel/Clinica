@@ -11,7 +11,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea } from '@mui/material';
 import 'react-datepicker/dist/react-datepicker.css'
-
+import '../Medicos.css'
 const Medicos = () => {
   const { loggedInUser } = useUserContext();
   const [medicos, setMedicos] = useState([]);
