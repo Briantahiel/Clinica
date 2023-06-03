@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Form from './components/Form';
 import MedicoForm from './components/FormMedico';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/form" element={<Form />} />
           <Route path="/med" element={<MedicoForm />} />
         </Routes>
+      <Footer />
       </BrowserRouter>
     </UserProvider>
   );

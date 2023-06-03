@@ -1,0 +1,52 @@
+.container-footer {
+    background-color: rgb(220, 238, 252);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .content-footer {
+    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: auto;
+    height: 100%;
+  }
+  
+  .footer-hours {
+    width: 280px;
+    text-align: center;
+    margin: 10px;
+  }
+  
+  .footer-schedule {
+    width: 280px;
+    text-align: center;
+    margin: 10px;
+  }
+  
+  .footer-contact {
+    width: 280px;
+    margin: 10px;
+  }
+  
+  .footer-social {
+    width: 280px;
+    text-align: center;
+    margin: 10px;
+  }
+  .footer-author {
+    text-align: center;
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .footer-author hr {
+    border: none;
+    border-top: 1px solid #000000;
+    margin: 10px auto;
+
+  }
