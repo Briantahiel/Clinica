@@ -16,7 +16,7 @@ body{
 }
 
 .background-banner{
-  background-image: url('../public/img/dentalbanner.jpg');
+  background-image: url('/img/dentalbanner.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;

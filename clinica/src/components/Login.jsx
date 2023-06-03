@@ -88,9 +88,9 @@ const Login = () => {
     </div>
     <h6>¿No tienes cuenta? <Link to='/form'>Registrate</Link></h6>
     */}
-    <div className='container-login' style={{ height: '100vh'}}>
-  <h2 style={{ textAlign: 'center' }}>Iniciar sesión</h2>
-  <form onSubmit={handleSubmit} style={{ maxWidth: '300px', margin: '0 auto' }}>
+    <div className='container-login' style={{ height: '100vh', margin: 'auto', display: 'block', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
+  <form onSubmit={handleSubmit} style={{ maxWidth: '300px', margin: ' auto', display: 'flex', justifyContent: 'center', flexDirection: 'column', height: '100%'}}>
+    <h2 style={{ textAlign: 'center' }}>Iniciar sesión</h2>
     <div className='container-email' style={{ marginBottom: '15px' }}>
       <label htmlFor="email" style={{ display: 'block', marginBottom: '5px' }}>Email:</label>
       <input
@@ -116,11 +116,10 @@ const Login = () => {
       />
     </div>
     <button type="submit" className='btn-login' style={{ width: '100%', padding: '10px', backgroundColor: 'blue', color: 'white', border: 'none', borderRadius: '5px' }}>Iniciar sesión</button>
+   <h6 style={{ textAlign: 'center', marginTop: '20px' }}>¿No tienes cuenta? <Link to='/form' style={{ color: 'blue', textDecoration: 'underline' }}>Registrate</Link></h6>
   </form>
-  <h6 style={{ textAlign: 'center', marginTop: '20px' }}>¿No tienes cuenta? <Link to='/form' style={{ color: 'blue', textDecoration: 'underline' }}>Registrate</Link></h6>
+ 
 </div>
-
-
     </> 
   );
 };

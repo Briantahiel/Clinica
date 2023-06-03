@@ -178,10 +178,9 @@ const Form= () => {
       </div>
       <button type="submit" className='btn-enviar' style={{ width: '100%', padding: '10px', backgroundColor: 'blue', color: 'white', border: 'none', borderRadius: '5px' }}>Enviar</button>
     </form>
-    <h6 style={{ textAlign: 'center', marginTop: '20px' }}>¿Ya tienes cuenta? <Link to='/login'>Iniciar sesión</Link></h6>
+    <h6 style={{ textAlign: 'center', marginTop: '20px' }}>¿Ya tienes cuenta? <Link to='/login' style={{ color: 'blue', textDecoration: 'underline' }}>Iniciar sesión</Link></h6>
   </div>
 </div>
-
     </>
   );
 };
