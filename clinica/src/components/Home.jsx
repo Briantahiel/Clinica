@@ -1,97 +1,3 @@
-// import { useEffect, useState } from "react";
-// import { useUserContext } from "../assets/Provider/UserProvider";
-// import Medicos from "./Medicos";
-// import "../App.css"
-// // import Carouselhome from "./Carousel";
-// import "../Home.css"
-// import Servicios from "./Servicios";
-// const Home = () => {
-//   const { loggedInUser } = useUserContext();
-//   const [citas, setCitas] = useState(null);
-
-//   useEffect(() => {
-//     const fetchCita = async () => {
-//       try {
-//         const response = await fetch(`http://localhost:5000/api/citas/${loggedInUser.paciente_id}`);
-//         if (response.ok) {
-//           const data = await response.json();
-//           setCitas(data);
-//         } else {
-//           throw new Error('Error al obtener los datos de la cita');
-//         }
-//       } catch (error) {
-//         console.error(error);
-//       }
-//     };
-
-//     fetchCita();
-//   }, [loggedInUser, setCitas]);
-  
-//   const handleActualizarCitas = async () => {
-//     try {
-//       const response = await fetch(`http://localhost:5000/api/citas/${loggedInUser.paciente_id}`);
-//       if (response.ok) {
-//         const data = await response.json();
-//         alert('Lista actualizada')
-//         setCitas(data);
-//       } else {
-//         throw new Error('Error al obtener los datos de la cita');
-//       }
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
-  
-//   const handleCancelarCita = async (citaId) => {
-//     try {
-//       const response = await fetch(`http://localhost:5000/api/citas/${citaId}/${loggedInUser.paciente_id}`, {
-//         method: 'DELETE',
-//       });
-//       if (response.ok) {
-//         setCitas((prevCitas) => prevCitas.filter((cita) => cita.id !== citaId));
-//         alert('Cita cancelada exitosamente');
-//       } else {
-//         throw new Error('Error al cancelar la cita');
-//       }
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
-  
-//   return (
-//     <> 
-//       <div className="home-user">
-//         {loggedInUser ? <h4>Bienvenido {loggedInUser.nombre}</h4> : null}
-//       </div>
-//       <Medicos />
-//       <div>
-//         {loggedInUser ? (
-//           <>
-//             <h4>Detalles de las citas</h4>
-//             {citas && citas.length > 0 ? (
-//               citas.map((cita) => (
-//                 <div key={cita.id} className="container-citas">
-//                   <p>Fecha: {cita.fecha}</p>
-//                   <p>Hora: {cita.hora}</p>
-//                   <p>Motivo: {cita.motivo}</p>
-//                   <button onClick={() => handleCancelarCita(cita.id)}>Cancelar Cita</button>
-//                 </div>
-//               ))
-//             ) : (
-//               <p>No tienes citas</p>
-//             )}
-//             <button onClick={handleActualizarCitas}>Actualizar Citas</button>
-//           </>
-//         ) : (
-//           null
-//         )}
-//       </div>
-//      <Servicios />
-//     </>
-//   );  
-// };
-
-// export default Home;
 import { useEffect, useState } from "react";
 import { useUserContext } from "../assets/Provider/UserProvider";
 import Medicos from "./Medicos";
@@ -118,14 +24,8 @@ const Home = () => {
         console.error(error);
       }
     };
-
-    // Llama a la función fetchCitas inicialmente
     fetchCitas();
-
-    // Establece un intervalo para actualizar las citas cada 5 segundos (puedes ajustar el intervalo según tus necesidades)
-    const interval = setInterval(fetchCitas, 1000);
-
-    // Limpia el intervalo cuando el componente se desmonte
+      const interval = setInterval(fetchCitas, 1000);
     return () => clearInterval(interval);
   }, [loggedInUser, setCitas]);
 
@@ -153,6 +53,25 @@ const Home = () => {
     <> 
       <div className="home-user">
         {loggedInUser ? <h4>Bienvenido {loggedInUser.nombre}</h4> : null}
+      </div>
+      <div id="carouselExampleFade" className="carousel carousel-container slide carousel-fade" data-bs-ride="carousel">
+        <div className="carousel-inner">
+          <div className="carousel-item active">
+            <img src="./img/banner4.jpg" className="d-block w-100" alt="..." />
+            <div className="carousel-caption">
+              <div className="text">
+                <h2>Al cuidado de tu salud dental.</h2>                
+                <h4>Sonríe sin preocupaciones. Cuidamos de tu salud dental con servicios profesionales y personalizados.</h4>
+              </div>
+          </div>
+          </div>
+          <div className="carousel-item">
+            <img src="./img/banner2.jpg" className="d-block w-100" alt="..." />
+          </div>
+          <div className="carousel-item">
+            <img src="./img/banner5.jpg" className="d-block w-100" alt="..." />
+          </div>
+      </div>  
       </div>
       <Medicos />
       <div className="citas-title">

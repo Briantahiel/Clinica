@@ -149,10 +149,6 @@ const Navbar = () => {
         </Toolbar>
       </Container>
     </AppBar>
-    <div className='background-banner'>
-
-    </div>
- 
     </>
   );
 }
