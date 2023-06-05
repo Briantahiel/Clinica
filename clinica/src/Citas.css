@@ -1,0 +1,40 @@
+.citas-container{
+    max-width: 1200px;
+    display: flex;
+    margin: auto;
+}
+
+.container-citas {
+    max-width: 360px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid rgb(182, 182, 182);
+    border-radius: 4px;
+  }
+.citas-title h4{
+    text-align: center;
+}
+.container-info{
+  width: 100%;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+}
+  .cita-info__item {
+    margin-bottom: 8px;
+  }
+
+  .cancelar-cita-btn {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+  }
+
+  .cancelar-cita-btn:hover {
+    background-color: #c82333;
+  }
+  

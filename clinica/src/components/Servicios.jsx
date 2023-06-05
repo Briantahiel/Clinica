@@ -40,55 +40,67 @@ const Servicios = () => {
     <Grid className='card-container'>
     <Card sx={{ maxWidth: 345, marginBottom: '20px' }}>
       <CardActionArea className='card-style'>
-        <CardMedia className='card-img'
-          component="img"
-          height="180"
-          image=" /img/paciente1.jpg"
-          alt="green iguana"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Lizard
+        <div className="card-img-container">
+          <CardMedia
+            className="card-img"
+            component="img"
+            image="/img/paciente1.jpg"
+            alt="paciente"
+          />
+        </div>
+        <CardContent className='card-content'>
+          <div className='card-info'>
+            <Typography gutterBottom variant="h5" component="div" className='card-title'>
+            Odontología General
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica
+          Los pacientes pueden recibir tratamientos generales en una sola sesión.
           </Typography>
+          </div>
         </CardContent>
       </CardActionArea>
     </Card>
     <Card sx={{ maxWidth: 345, marginBottom: '20px' }}>
       <CardActionArea>
-        <CardMedia className='card-img'
-          component="img"
-          height="180"
-          image=" /img/paciente2.jpg"
-          alt="green iguana"
-        />
-        <CardContent>
+      <div className="card-img-container">
+          <CardMedia
+            className="card-img"
+            component="img"
+            image="/img/paciente2.jpg"
+            alt="paciente"
+          />
+        </div>
+        <CardContent className='card-content'>
+        <div className='card-info'>
           <Typography gutterBottom variant="h5" component="div">
-            Lizard
+            Odontología Cosmética
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica
+              Nuestros tratamientos vuelven tus dientes en la sonrisa soñada.
           </Typography>
+        </div>
         </CardContent>
       </CardActionArea>
     </Card>
     <Card sx={{ maxWidth: 345, marginBottom: '20px' }}>
       <CardActionArea>
-        <CardMedia className='card-img'
-          component="img"
-          height="180"
-          image=" /img/paciente3.jpg"
-          alt="green iguana"
-        />
-        <CardContent>
+        <div className="card-img-container">
+            <CardMedia
+              className="card-img"
+              component="img"
+              image="/img/paciente3.jpg"
+              alt="paciente"
+            />
+        </div>
+        <CardContent className='card-content'>
+        <div className='card-info'>
           <Typography gutterBottom variant="h5" component="div">
-            Lizard
+            Implantes Dentales
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents except Antarctica
+            Recupera la confianza de lucir una dentadura perfecta.
           </Typography>
+        </div>
         </CardContent>
       </CardActionArea>
     </Card>

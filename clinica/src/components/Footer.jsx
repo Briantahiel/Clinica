@@ -50,7 +50,7 @@ const Footer = () => {
                 </div>
                 <div className="footer-author">
                     <hr />
-                    <p>&copy; {new Date().getFullYear()} - Todos los derechos reservados. Brian BMG</p>
+                    <p>&copy; {new Date().getFullYear()} - Todos los derechos reservados. Brian G.</p>
                 </div>
             </div>
         </div>

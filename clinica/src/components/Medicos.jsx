@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useUserContext } from "../assets/Provider/UserProvider";
 import { addDays, isWeekend, setHours, setMinutes, setSeconds, format, addMinutes } from "date-fns";
 import DatePicker from "react-datepicker";
@@ -314,7 +313,6 @@ const Medicos = () => {
             <p>No se encontraron médicos</p>
           )}
         </div>
-        <Link to="/">Volver</Link>
       </div>
     </>
   );
