@@ -4,7 +4,6 @@
     margin-top: 50px;
 }
 .carousel-container {
-    margin-top: -50px;
     height: 100vh;
     display: flex;
     align-items: center;
@@ -32,22 +31,25 @@
     max-width: 520px;
 
   }
-  .text h2{
-    color: black;
+  .text h1{
+    font-size: 64px;
+    color: #000000;
+    line-height: 1;
     font-weight: 700;
-    font-size: 60px;
+    
   }
-  .text h4{
-    color: rgb(202, 202, 202);
-    font-weight: 200;
+  .text p{
+    font-weight: 300;
+    color: rgba(0, 0, 0, 9);
   }
   .carousel-item img{
     filter: saturate(1) brightness(0.7);
   }
+  
   @media (max-width: 768px) {
     .carousel-caption {
       position: absolute;
-      top: 65%;
+      top: 60%;
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
@@ -55,7 +57,7 @@
     .carousel-caption{
         width: 320px;
     }
-    .text h2{
+    .text h1{
         font-weight: 700;
         font-size: 40px;
     }

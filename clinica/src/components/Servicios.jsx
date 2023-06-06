@@ -31,6 +31,7 @@ const Servicios = () => {
 
   return (
     <>
+    <div className='servicios-container'>
     <div className="container-servicios-info">
         <h6>NUESTROS SERVICIOS</h6>
         <h3>Qué ofrecemos para ti</h3>
@@ -72,7 +73,7 @@ const Servicios = () => {
         </div>
         <CardContent className='card-content'>
         <div className='card-info'>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h5" component="div" className='card-title'>
             Odontología Cosmética
           </Typography>
           <Typography variant="body2" color="text.secondary">
@@ -94,7 +95,7 @@ const Servicios = () => {
         </div>
         <CardContent className='card-content'>
         <div className='card-info'>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h5" component="div" className='card-title'>
             Implantes Dentales
           </Typography>
           <Typography variant="body2" color="text.secondary">
@@ -105,6 +106,7 @@ const Servicios = () => {
       </CardActionArea>
     </Card>
     </Grid>
+    </div>
     </div>
     </>
   );

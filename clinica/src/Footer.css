@@ -1,9 +1,7 @@
 .container-footer {
-    background-color: rgb(220, 238, 252);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+    background-image: url('../public/img/wave.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
   }
   
   .content-footer {
@@ -48,5 +46,4 @@
     border: none;
     border-top: 1px solid #000000;
     margin: 10px auto;
-
   }

@@ -12,8 +12,8 @@ const Footer = () => {
                     <p>info.dento@gmail.com</p>
                 </div>
                 <div className="footer-schedule">
-                    <h5>HORARIOS</h5>
                     <div className="footer-hours">
+                    <h5>HORARIOS</h5>
                         <div className="days">
                             <p>Lun - Vie</p>
                             <p>9:00 - 18:00</p>

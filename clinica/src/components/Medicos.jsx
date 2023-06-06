@@ -302,7 +302,7 @@ const Medicos = () => {
               
                         </>
                       ) : (
-                        <p>Inicia sesión para reservar una cita</p>
+                        <p></p>
                       )}
                     {/* </div> */}
                   </CardContent>

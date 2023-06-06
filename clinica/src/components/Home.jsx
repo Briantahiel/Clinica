@@ -51,17 +51,14 @@ const Home = () => {
   }
   return (
     <> 
-      <div className="home-user">
-        {loggedInUser ? <h4>Bienvenido {loggedInUser.nombre}</h4> : null}
-      </div>
       <div id="carouselExampleFade" className="carousel carousel-container slide carousel-fade" data-bs-ride="carousel">
         <div className="carousel-inner">
           <div className="carousel-item active">
             <img src="./img/banner4.jpg" className="d-block w-100" alt="..." />
             <div className="carousel-caption">
               <div className="text">
-                <h2>Al cuidado de tu salud dental.</h2>                
-                <h4>Sonríe sin preocupaciones. Cuidamos de tu salud dental con servicios profesionales y personalizados.</h4>
+                <h1 className="mb-4">Al cuidado de tu salud dental.</h1>                
+                <p>Sonríe sin preocupaciones. Cuidamos de tu salud dental con servicios profesionales y personalizados.</p>
               </div>
           </div>
           </div>
@@ -69,9 +66,12 @@ const Home = () => {
             <img src="./img/banner2.jpg" className="d-block w-100" alt="..." />
           </div>
           <div className="carousel-item">
-            <img src="./img/banner5.jpg" className="d-block w-100" alt="..." />
+            <img src="./img/banner6.jpg" className="d-block w-100" alt="..." />
           </div>
       </div>  
+      </div>
+      <div className="home-user">
+        {loggedInUser ? <h4>Bienvenido {loggedInUser.nombre}</h4> : null}
       </div>
       <Medicos />
       <div className="citas-title">
