@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from '../assets/Provider/UserProvider';
 import Swal from 'sweetalert2';
-
+import "../Login.css"
 const Login = () => {
   const navigate = useNavigate();
 
@@ -58,38 +58,9 @@ const Login = () => {
 
   return (
     <>
-    {/* <div className='container-login'>
-      <h2>Iniciar sesión</h2>
-      <form onSubmit={handleSubmit}>
-        <div className='container-email'>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className='container-password'>
-          <label htmlFor="password">Contraseña:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit" className='btn-login'>Iniciar sesión</button>
-      </form>
-    </div>
-    <h6>¿No tienes cuenta? <Link to='/form'>Registrate</Link></h6>
-    */}
-    <div className='container-login' style={{ height: '100vh', margin: 'auto', display: 'block', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
-  <form onSubmit={handleSubmit} style={{ maxWidth: '300px', margin: ' auto', display: 'flex', justifyContent: 'center', flexDirection: 'column', height: '100%'}}>
+    <div className='container-login'>
+    <div className='container-form'>
+    <form onSubmit={handleSubmit}>
     <h2 style={{ textAlign: 'center' }}>Iniciar sesión</h2>
     <div className='container-email' style={{ marginBottom: '15px' }}>
       <label htmlFor="email" style={{ display: 'block', marginBottom: '5px' }}>Email:</label>
@@ -116,9 +87,9 @@ const Login = () => {
       />
     </div>
     <button type="submit" className='btn-login' style={{ width: '100%', padding: '10px', backgroundColor: 'blue', color: 'white', border: 'none', borderRadius: '5px' }}>Iniciar sesión</button>
-   <h6 style={{ textAlign: 'center', marginTop: '20px' }}>¿No tienes cuenta? <Link to='/form' style={{ color: 'blue', textDecoration: 'underline' }}>Registrate</Link></h6>
+   <h6 style={{ textAlign: 'center', marginTop: '10px' }}>¿No tienes cuenta? <Link to='/form' style={{ color: 'blue', textDecoration: 'underline' }}>Registrate</Link></h6>
   </form>
- 
+  </div>
 </div>
     </> 
   );

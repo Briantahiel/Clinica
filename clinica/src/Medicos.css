@@ -1,5 +1,21 @@
-.container-medicos h4{
+.container-medicos{
+  min-height: 100vh;
+}
+.container-general{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.container-general h4{
     text-align: center;
     margin: 30px 0;
   }
- 
+ .container-cards{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+ }
+ #medicos{
+  height: 60px;
+ }

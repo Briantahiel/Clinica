@@ -231,16 +231,22 @@ const Medicos = () => {
 
   return (
     <>
-      <div className="container-medicos" style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        <h4>Nuestros especialistas</h4>
-        <div className="container-cards" style={{ display: "flex", justifyContent: "space-around", flexWrap: "wrap" }}>
+    <div id="medicos">
+
+    </div>
+      <div className="container-medicos" id="dentistas" style={{ maxWidth: "1200px", margin: "0 auto" }}>
+        <div className="container-general">
+        <div>
+          <h4>Nuestros especialistas</h4>
+        </div>
+        <div className="container-cards">
           {medicos && medicos.length > 0 ? (
             medicos.map((medico) => (
-              <Card key={medico.dni} sx={{ width: "18rem", margin: "10px", padding: "0" }}>
+              <Card key={medico.dni} sx={{ width: "16rem", margin: "10px", padding: "0" }}>
                 <CardActionArea>
                   <CardMedia
                     component="img"
-                    height="140"
+                    height="160"
                     image={convertBufferToDataURL(medico.imagen.data)}
                     alt="Doctor"
                   />
@@ -249,9 +255,8 @@ const Medicos = () => {
                       {medico.nombre}: {medico.especialidad}.
                     </Typography>
                     <Typography variant="body2" color="text.secondary" style={{ height: "150px", overflow: "hidden", textOverflow: "ellipsis" }}>
-                      {medico.descripcion}.
+                      {medico.descripcion}
                     </Typography>
-                    {/* <div className="custom-datepicker-container"> */}
                       {loggedInUser ? (
                         <>
                         <DatePicker 
@@ -312,6 +317,7 @@ const Medicos = () => {
           ) : (
             <p>No se encontraron médicos</p>
           )}
+        </div>
         </div>
       </div>
     </>

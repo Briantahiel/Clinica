@@ -1,6 +1,5 @@
 // import { Link } from "react-router-dom";
 import * as React from 'react';
-
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -16,8 +15,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { Link } from "react-router-dom";
 import { useUserContext } from "../assets/Provider/UserProvider";
 
-const pages = ['Home', 'Medicos', 'Nosotros'];
-const settings = ['Perfil', 'Login'];
+const settings = ['Home', 'Log In'];
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -25,11 +23,18 @@ const Navbar = () => {
   const { loggedInUser } = useUserContext();
   const { logout } = useUserContext();
 
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+
   const handleLogout = () => {
-    logout(); // Llama a la función logout del contexto de usuario
+    logout(); 
   };
   
-
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -80,23 +85,63 @@ const Navbar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              <MenuItem component={Link} to="/" onClick={handleCloseNavMenu}>
+                  <Button
+                    className="btn-pages"
+                    sx={{ my: 3, color: 'black', display: 'block' }}
+                  >
+                    HOME
+                  </Button>
                 </MenuItem>
-              ))}
-            </Menu>
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Button
+                    className="btn-pages"
+                    onClick={() => {
+                      handleCloseNavMenu();
+                      scrollToSection('dentistas');
+                    }}      
+                    sx={{ my: 3, color: 'black', display: 'block' }}
+                  >
+                    DENTISTAS
+                  </Button>
+                  </MenuItem>
+                  <MenuItem onClick={handleCloseNavMenu}>
+                  <Button
+                    className="btn-pages"
+                    onClick={() => {
+                        handleCloseNavMenu();
+                        scrollToSection('footer');
+                      }}
+                    sx={{ my: 3, color: 'black', display: 'block' }}
+                  >
+                    SOBRE NOSOTROS
+                  </Button>
+                  </MenuItem>
+            </Menu> 
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
               <Button className='btn-pages'
-                key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 3, color: 'black', display: 'block' }}
               >
-                {page}
+              <Link to="/" style={{ textDecoration: 'none'}}>HOME</Link>
               </Button>
-            ))}
+              <Button className='btn-pages'
+                onClick={handleCloseNavMenu}
+                sx={{ my: 3, color: 'black', display: 'block' }}
+              >
+                 <Link to="#" onClick={() => scrollToSection('medicos')} style={{ textDecoration: 'none' }}>
+            DENTISTAS
+          </Link>
+              </Button>
+              <Button className='btn-pages'
+                onClick={handleCloseNavMenu}
+                sx={{ my: 3, color: 'black', display: 'block' }}
+              >
+          <Link to="#" onClick={() => scrollToSection('footer')}  style={{ textDecoration: 'none'}}>
+            SOBRE NOSOTROS
+          </Link>
+              </Button>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
           {loggedInUser ? (
@@ -132,14 +177,14 @@ const Navbar = () => {
             >
            {settings.map((setting) => (
             <MenuItem key={setting} onClick={handleCloseUserMenu}>
-            {setting === 'Perfil' ? (
-            <Link to="/perfil" style={{ textDecoration: 'none', color: 'inherit' }}>
+            {setting === 'Home' ? (
+            <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
             <Typography textAlign="center">{setting}</Typography>
             </Link>
             ) : (
               <Link
               to={loggedInUser ? '/' : '/login'} style={{ textDecoration: 'none', color: 'inherit' }} onClick={loggedInUser ? handleLogout : undefined}>              
-              <Typography textAlign="center">{loggedInUser ? 'Logout' : 'Login'}</Typography>
+              <Typography textAlign="center">{loggedInUser ? 'Log Out' : 'Log In'}</Typography>
             </Link>
             )}
           </MenuItem>

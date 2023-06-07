@@ -1,0 +1,20 @@
+.container-login{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../public/img/banner2.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: auto;
+}
+.container-form{
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    backdrop-filter: blur(3px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}

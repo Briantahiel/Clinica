@@ -33,8 +33,7 @@ const Servicios = () => {
     <>
     <div className='servicios-container'>
     <div className="container-servicios-info">
-        <h6>NUESTROS SERVICIOS</h6>
-        <h3>Qué ofrecemos para ti</h3>
+        <h5>NUESTROS SERVICIOS</h5>
         <p>Todos nuestros tratamientos y servicios se brindan en una cómoda clínica, diseñada de acuerdo con altos estándares de calidad.</p>
     </div>
     <div className="container-servicios">
@@ -77,7 +76,7 @@ const Servicios = () => {
             Odontología Cosmética
           </Typography>
           <Typography variant="body2" color="text.secondary">
-              Nuestros tratamientos vuelven tus dientes en la sonrisa soñada.
+              Nuestros tratamientos vuelven tus dientes la sonrisa soñada.
           </Typography>
         </div>
         </CardContent>

@@ -1,0 +1,22 @@
+.container-form_user{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../public/img/banner2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: auto;
+}
+.container-form_form{
+    height: 100%;
+    margin-top: 90px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    backdrop-filter: blur(3px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}

@@ -16,7 +16,7 @@
   .carousel-item {
     height: 100%;
   }
-  
+
   .carousel-item img {
     height: 100%;
     object-fit: cover;
@@ -29,6 +29,7 @@
     transform: translateY(-50%);
     text-align: left;
     max-width: 520px;
+    
 
   }
   .text h1{
@@ -45,7 +46,9 @@
   .carousel-item img{
     filter: saturate(1) brightness(0.7);
   }
-  
+ .citas-title{
+    max-height: 460px;
+  }
   @media (max-width: 768px) {
     .carousel-caption {
       position: absolute;

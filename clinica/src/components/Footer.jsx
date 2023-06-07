@@ -2,13 +2,13 @@ import "../Footer.css"
 const Footer = () => {
   return (
     <>
-        <div className="container-footer">
+        <div className="container-footer" id="footer">
             <div className="content-footer">
                 <div className="footer-contact">
                     <img alt='logo' src="./img/logo.png" style={{ width: '50px' }} /> 
                     <p>Etiam sutor risus, dapibus act elefend katen, lacinia sitamet denim. Mauris sagittis kansa interdum dignissim.</p>  
-                    <p>28 Jackson Street, Chicago, 7788569 USA</p>
-                    <p>+84. 2252. 2250. 122</p>
+                    <p>123 calle, Buenos Aires, AR</p>
+                    <p>+54. 011 12356789</p>
                     <p>info.dento@gmail.com</p>
                 </div>
                 <div className="footer-schedule">
@@ -39,13 +39,7 @@ const Footer = () => {
                 <div className="footer-social">
                     <h5>MÁS INFORMACIÓN</h5>
                     <div>
-                        <p>Facebook</p>
-                    </div>
-                    <div>
-                        <p>Twitter</p>
-                    </div>
-                    <div>
-                        <p>Instagram</p>
+                        <p>Etiam sutor risus, dapibus act elefend katen, lacinia sitamet denim. Mauris sagittis kansa interdum dignissim.</p>  
                     </div>
                 </div>
                 <div className="footer-author">
