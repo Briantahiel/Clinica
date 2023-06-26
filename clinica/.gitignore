@@ -17,16 +17,16 @@ npm install @fontsource/roboto
 npm install @mui/icons-material
 npm install @mui/x-date-pickers
 npm install dayjs
-npm install @mui/material @emotion/react @emotion/styled
-npm install @mui/material @mui/styled-engine-sc styled-components
 npm install @mui/lab
 npm install date-fns@2.x.x date-fns-tz@1.x.x
 npm install @material-ui/core
 npm install react-material-ui-carousel
 npm install @mui/styles --legacy-peer-deps
+npm install dotenv
 
 
 # Logs
+.env
 logs
 *.log
 npm-debug.log*
