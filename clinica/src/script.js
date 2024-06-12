@@ -3,6 +3,7 @@ import mysql from 'mysql';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import multer from 'multer';
+require('dotenv').config();
 // const multer = require('multer');
 // const fs =  require('fs');
 import fs from 'fs';
@@ -17,11 +18,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const con = mysql.createConnection({
-    host: '127.0.0.1',
-    user: 'Brianmgz',
-    password: 'brianTahielDante',
-    database: 'consultorios',
-    port: 3306,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+  port: process.env.DB_PORT,
 });
 app.get('/', (req, res) => {
   res.send('¡Bienvenido a la API del Centro Médico!');
